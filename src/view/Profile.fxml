@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="profileBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProfileController">
+    <left>
+        <VBox prefHeight="760.0" prefWidth="300.0" styleClass="primary-color" stylesheets="@../css/profile.css" BorderPane.alignment="CENTER">
+            <children>
+                <VBox alignment="CENTER" prefHeight="76.0" prefWidth="300.0">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                </VBox>
+            <HBox alignment="CENTER" prefHeight="124.0" prefWidth="300.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+                <VBox alignment="TOP_CENTER" prefHeight="455.0" prefWidth="340.0" spacing="10.0">
+                    <children>
+                  <Button fx:id="tradingButton" alignment="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="225.0" style="-fx-background-radius: 100;" styleClass="direct_btn" text="Trading" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_CART" selectionStart="1" size="30" stroke="#ffffff9e" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </FontAwesomeIconView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="orderHistoryButton" alignment="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="225.0" style="-fx-background-radius: 100;" styleClass="direct_btn" text="Order History" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="HISTORY" selectionStart="1" size="30" stroke="#ffffff9e" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </FontAwesomeIconView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="productManageButton" alignment="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="225.0" style="-fx-background-radius: 100;" styleClass="direct_btn" text="Product" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="TABLE" selectionStart="1" size="30" stroke="#ffffff9e" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </FontAwesomeIconView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="statsButton" alignment="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="225.0" style="-fx-background-radius: 100;" styleClass="direct_btn" text="Stats (Coming soon)" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="BAR_CHART" selectionStart="1" size="30" stroke="#ffffff9e" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </FontAwesomeIconView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="staffManageButton" alignment="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="225.0" style="-fx-background-radius: 100;" styleClass="direct_btn" text="Staff" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="INFO" selectionStart="1" size="30" stroke="#ffffff9e" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </FontAwesomeIconView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="userButton" alignment="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="225.0" style="-fx-background-radius: 100;" styleClass="direct_btn" text="User" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="USER_CIRCLE" selectionStart="1" size="30" stroke="#ffffff9e" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </FontAwesomeIconView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="logOutButton" alignment="CENTER" mnemonicParsing="false" prefHeight="75.0" prefWidth="225.0" style="-fx-background-radius: 100;" styleClass="direct_btn" text="Log Out" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" selectionStart="1" size="30" stroke="#ffffff9e" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                           <font>
+                              <Font name="System Bold Italic" size="14.0" />
+                           </font>
+                        </FontAwesomeIconView>
+                     </graphic>
+                  </Button>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </left>
+</BorderPane>

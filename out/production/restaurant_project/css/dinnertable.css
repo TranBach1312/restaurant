@@ -1,0 +1,9 @@
+.dinner-table{
+    -fx-background-color: #748CF1;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+.in-use{
+    -fx-background-color: white;
+    -fx-text-fill: gray;
+}

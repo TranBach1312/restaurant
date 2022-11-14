@@ -1,0 +1,61 @@
+
+.table-view .column-header-background .label {
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #2d3436;
+}
+
+
+.input_textfield {
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-border-style: hidden hidden solid hidden;
+}
+
+.table-view .scroll-bar * {
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}
+
+.finish_button:hover{
+    -fx-text-fill: #e17055;
+}
+/*.table-row-cell:filled:selected {*/
+/*    -fx-background: -fx-control-inner-background ;*/
+/*    -fx-background-color: -fx-table-cell-border-color, -fx-background ;*/
+/*    -fx-background-insets: 0, 0 0 1 0 ;*/
+/*    -fx-table-cell-border-color: derive(-fx-color, 5%);*/
+/*}*/
+/*.table-row-cell:odd:filled:selected {*/
+/*    -fx-background: -fx-control-inner-background-alt ;*/
+/*}*/
+.button2 {
+    -fx-background-color: #273c75;
+    -fx-background-radius: 30;
+}
+.button2:hover {
+
+    -fx-background-color:#2ecc71 ;
+}
+
+.scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+.scroll-pane-1{
+    -fx-background-color: #353A56;
+}
+.dishTableView .table-column{
+    -fx-alignment: Center;
+}
+.dishTableView .table-cell{
+    -fx-font-size: 15px;
+}

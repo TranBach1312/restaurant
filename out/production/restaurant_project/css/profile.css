@@ -1,0 +1,74 @@
+.primary-color{
+    -fx-background-image: url("../resources/left.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+.button1 {
+    -fx-background-color:#217346;
+    -fx-background-radius: 30;
+}
+.button1:hover{
+    -fx-background-color: #9596d0;
+}
+.text-input {
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #242551;
+    -fx-font-size: 20px;
+}
+.selected-boder:hover{
+    -fx-border-color: #fff;
+    -fx-border-width: 0 3 0 0;
+}
+.button_menu_bar {
+    -fx-background-radius: 30;
+    -fx-text-fill: #fff;
+    -fx-font-size: 20px;
+    -fx-background-color: #cc3600;
+}
+.button_menu_bar:hover{
+    -fx-background-color: rgba(255, 127, 80,1.0);
+}
+.button_menu{
+    -fx-background-radius: 30;
+    -fx-border-width: 50;
+    -fx-font-size: 14px;
+    -fx-text-fill: #fff;
+    -fx-background-color: #ff7c4d;
+}
+.button_menu:hover {
+    -fx-background-color: #e63d00;
+}
+.tool-bar1{
+    -fx-background-color: #00002C;
+}
+.anchonPane1 {
+    -fx-background-color: rgba(83, 82, 237,1.0);
+}
+.anchonPane2 {
+    -fx-background-color: rgba(112, 161, 255,1.0);
+}
+.hbox-menu {
+    -fx-background-radius: 20;
+    -fx-background-color: #ff7c4d;
+}
+.themmon {
+    -fx-background-color: #ff7c4d;
+}
+.themmon:hover {
+    -fx-background-color: #ff571a;
+}
+.thanhtoan_thongbao {
+    -fx-background-radius: 20;
+    -fx-background-color: #b3cdff;
+}
+.thanhtoan_thongbao:hover {
+    -fx-background-color: #4d8bff;
+}
+.direct_btn{
+    -fx-background-color: transparent;
+}
+.direct_btn:hover,
+.active{
+    -fx-background-color: #141313;
+}

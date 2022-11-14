@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="productVBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1050.0" stylesheets="@../css/bill.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ProductController">
+   <children>
+      <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="1000.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="232.0">
+               <children>
+                  <TextField fx:id="searchTextField" prefHeight="30.0" prefWidth="173.0" />
+                  <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="63.0" style="-fx-background-radius: 0;" styleClass="button2" text="Search" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="50.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="922.0">
+               <children>
+                  <Label prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #3498db;">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label text="On stock">
+                     <HBox.margin>
+                        <Insets left="5.0" right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #bdc3c7;" />
+                  <Label text="Out of Stock">
+                     <HBox.margin>
+                        <Insets left="5.0" right="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #353b48;" />
+                  <Label text="Deleted">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Button fx:id="addButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="79.0" style="-fx-text-fill: white;" styleClass="button2" text="Add new" textFill="#ffffffb2">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+         </children>
+      </HBox>
+      <TableView fx:id="dishTableView" prefHeight="500.0" prefWidth="1000.0" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn fx:id="nameColumn" minWidth="0.0" prefWidth="300.0" text="Name" />
+            <TableColumn fx:id="categoryColumn" prefWidth="148.0" text="Category" />
+            <TableColumn fx:id="priceColumn" prefWidth="200.0" text="Price" />
+            <TableColumn fx:id="averageCostPriceColumn" prefWidth="226.0" text="Average Cost Price" />
+            <TableColumn fx:id="totalSoldColumn" minWidth="0.0" prefWidth="175.0" text="Total sold" />
+        </columns>
+      </TableView>
+      <HBox alignment="CENTER" prefHeight="75.0" prefWidth="1050.0" spacing="5.0">
+         <children>
+            <Button fx:id="prevButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Prev" />
+            <HBox fx:id="pageHBox" alignment="CENTER" prefHeight="75.0" spacing="5.0" />
+            <Button fx:id="nextButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="50.0" text="Next" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
