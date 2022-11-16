@@ -41,8 +41,8 @@ public class BillHistoryController implements Initializable {
     @FXML
     private TableColumn<Bill, Customer> customerColumn;
 
-    @FXML
-    private TableColumn<Bill, DinnerTable> dinnerTableColumn;
+//    @FXML
+//    private TableColumn<Bill, DinnerTable> dinnerTableColumn;
 
     @FXML
     private TableColumn<Bill, Double> totalDiscountColumn;
@@ -52,6 +52,11 @@ public class BillHistoryController implements Initializable {
 
     @FXML
     private DatePicker dateBillPicker;
+
+    @FXML
+    private Button prevButton;
+    @FXML
+    private Button nextButton;
 
 
     @Override
@@ -85,7 +90,6 @@ public class BillHistoryController implements Initializable {
 
         billNumberColumn.setCellValueFactory(new PropertyValueFactory<Bill, String>("billNumber"));
         customerColumn.setCellValueFactory(new PropertyValueFactory<Bill, Customer>("customer"));
-        dinnerTableColumn.setCellValueFactory(new PropertyValueFactory<Bill, DinnerTable>("dinnerTable"));
         totalDiscountColumn.setCellValueFactory(new PropertyValueFactory<Bill, Double>("totalDiscount"));
         totalMoneyColumn.setCellValueFactory(new PropertyValueFactory<Bill, Double>("totalMoney"));
         createdAtColumn.setCellValueFactory(new PropertyValueFactory<Bill, Timestamp>("createdAt"));
@@ -95,6 +99,16 @@ public class BillHistoryController implements Initializable {
             LocalDate localDate = dateBillPicker.getValue();
             billTableView.setItems(OrderRepository.getBillList(localDate));
         });
+        prevButton.setOnAction(actionEvent -> {
+            LocalDate localDate = dateBillPicker.getValue();
+            dateBillPicker.setValue(localDate.minusDays(1));
+            billTableView.setItems(OrderRepository.getBillList(localDate.minusDays(1)));
+        });
+        nextButton.setOnAction(actionEvent -> {
+            LocalDate localDate = dateBillPicker.getValue();
+            dateBillPicker.setValue(localDate.plusDays(1));
+            billTableView.setItems(OrderRepository.getBillList(localDate.plusDays(1)));
+        });
 
         billTableView.setRowFactory(tr -> {
             TableRow<Bill> row = new TableRow<>();
@@ -102,6 +116,7 @@ public class BillHistoryController implements Initializable {
                 if (mouseEvent.getClickCount() == 2 && !row.isEmpty()) {
                     if (row.getItem() != null) {
                         Bill bill = row.getItem();
+                        bill.getOrder().setOrderItems(OrderRepository.getOrderItemFromOrder(bill.getOrder()));
                         detailBill(bill);
                     }
                 }

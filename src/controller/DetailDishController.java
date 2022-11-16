@@ -88,6 +88,7 @@ public class DetailDishController implements Initializable {
             FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter("Images File", "*.jpg", "*.png");
             fc.setTitle("Choose Image");
             fc.getExtensionFilters().add(imageFilter);
+            fc.setInitialDirectory(new File("C:\\Users\\bacht\\Pictures\\p2"));
             File file = fc.showOpenDialog(stage);
             if (file != null) {
                 Image image = null;

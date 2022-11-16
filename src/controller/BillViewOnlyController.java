@@ -72,10 +72,12 @@ public class BillViewOnlyController implements Initializable {
 
     public BillViewOnlyController() {
     }
-    public void setThisBill(Bill bill){
+
+    public void setThisBill(Bill bill) {
         this.thisBill = bill;
         setThisOrder(thisBill.getOrder());
     }
+
     public void setThisOrder(Order thisOrder) {
         this.thisOrder = thisOrder;
     }

@@ -4,6 +4,11 @@
     -fx-font-size: 20px;
 }
 .in-use{
-    -fx-background-color: white;
-    -fx-text-fill: gray;
+    -fx-background-color: gray;
+    -fx-text-fill: white;
+}
+.background-1{
+    -fx-background-image: url("../resources/background.png");
+    -fx-background-size: 1050px 700px;
+    -fx-background-repeat: no-repeat;
 }

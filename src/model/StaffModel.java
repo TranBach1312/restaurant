@@ -21,7 +21,7 @@ public class StaffModel {
         if(user == null){
             alert.setContentText("Login failed, check your username and password!");
         }
-        else if(!user.isActive()){
+        else if(StaffRepository.getStaffFromUser(user).get().isDeleted()){
             alert.setContentText("Your account has been disabled!");
         }
         else{

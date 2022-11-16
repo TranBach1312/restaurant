@@ -203,6 +203,7 @@ public class OrderRepository {
         }
         return dishes;
     }
+
     public static ObservableList<Dish> getDishList(DishCategory dishCategory, String search, int curPage, int limit) {
         Connection conn = JDBCConnect.JDBCConnector();
         PreparedStatement ps = null;
@@ -230,6 +231,7 @@ public class OrderRepository {
         }
         return dishes;
     }
+
     public static ObservableList<Dish> getDishList(DishCategory dishCategory) {
         Connection conn = JDBCConnect.JDBCConnector();
         PreparedStatement ps = null;
@@ -254,7 +256,7 @@ public class OrderRepository {
     }
 
 
-    public static int getDishCount(){
+    public static int getDishCount() {
         Connection conn = JDBCConnect.JDBCConnector();
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -275,6 +277,7 @@ public class OrderRepository {
         }
         return dishCount;
     }
+
     public static DishCategory getDishCategory(ResultSet rs) {
         DishCategory dishCategory = new DishCategory();
         try {
@@ -508,10 +511,10 @@ public class OrderRepository {
             if (rs.next()) {
                 Order order = new Order();
                 order.setId(rs.getInt("id"));
-                getDinnerTable(rs.getInt("table_id")).ifPresent(e -> {
-                    order.setTable(e);
-                });
-                order.setOrderItems(getOrderItemFromOrder(order));
+//                getDinnerTable(rs.getInt("table_id")).ifPresent(e -> {
+//                    order.setTable(e);
+//                });
+//                order.setOrderItems(getOrderItemFromOrder(order));
                 order.setUpdateAt(rs.getTimestamp("update_at"));
                 order.setStatus(rs.getBoolean("status"));
                 order.setTotalMoney(rs.getDouble("total_money"));
@@ -756,9 +759,9 @@ public class OrderRepository {
 
         try {
             bill.setId(rs.getInt("id"));
-            bill.setBillNumber(rs.getString("bill_number"));
-            getCustomer(rs.getInt("customer_id")).ifPresent(bill::setCustomer);
             getOrder(rs.getInt("order_id")).ifPresent(bill::setOrder);
+            getCustomer(rs.getInt("customer_id")).ifPresent(bill::setCustomer);
+            bill.setBillNumber(rs.getString("bill_number"));
             bill.setTotalDiscount(rs.getDouble("total_discount"));
             bill.setTotalMoney(rs.getDouble("total_money"));
             bill.setCreatedAt(rs.getTimestamp("created_at"));
@@ -772,12 +775,36 @@ public class OrderRepository {
         Connection conn = JDBCConnect.JDBCConnector();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM `bill` WHERE `created_at` > ? and `created_at` < ?";
+        String sql = "SELECT * FROM `bill` WHERE `created_at` between ? and ?";
         ObservableList<Bill> bills = FXCollections.observableArrayList();
         try {
             ps = conn.prepareStatement(sql);
-            ps.setTimestamp(1, Timestamp.valueOf(localDate.atStartOfDay()));
-            ps.setTimestamp(2, Timestamp.valueOf(localDate.plusDays(1).atStartOfDay()));
+            ps.setDate(1, Date.valueOf(localDate));
+            ps.setDate(2, Date.valueOf(localDate.plusDays(1)));
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                bills.add(getBill(rs));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            JDBCConnect.closeResultSet(rs);
+            JDBCConnect.closePreparedStatement(ps);
+            JDBCConnect.closeConnection(conn);
+        }
+        return bills;
+    }
+
+    public static ObservableList<Bill> getBillList(LocalDate begin, LocalDate end) {
+        Connection conn = JDBCConnect.JDBCConnector();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM `bill` WHERE `created_at` between ? and ?";
+        ObservableList<Bill> bills = FXCollections.observableArrayList();
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setDate(1, Date.valueOf(begin));
+            ps.setDate(2, Date.valueOf(end));
             rs = ps.executeQuery();
             while (rs.next()) {
                 bills.add(getBill(rs));

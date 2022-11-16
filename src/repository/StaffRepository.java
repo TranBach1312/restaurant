@@ -174,6 +174,28 @@ public class StaffRepository {
         return flag;
     }
 
+    public static Boolean updateActiveUser(User user) {
+        Connection conn = JDBCConnect.JDBCConnector();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Boolean flag = false;
+        String sql = "UPDATE user SET `is_active` = ? WHERE `id` = ?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setBoolean(1, user.isActive());
+            ps.setInt(2, user.getStaffId());
+            if (ps.executeUpdate() > 0) {
+                flag = true;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            JDBCConnect.closePreparedStatement(ps);
+            JDBCConnect.closeConnection(conn);
+        }
+        return flag;
+    }
+
     public static Boolean updateStaff(Staff staff) {
         Connection conn = JDBCConnect.JDBCConnector();
         PreparedStatement ps = null;
@@ -202,7 +224,7 @@ public class StaffRepository {
         PreparedStatement ps = null;
         ResultSet rs = null;
         Boolean flag = false;
-        String sql = "UPDATE `staff` SET `name` = ?, `birth_date` = ?, `phone` = ?, `email` = ?, `address` = ?, `staff_position_id` = ? WHERE `id` = ?";
+        String sql = "UPDATE `staff` SET `name` = ?, `birth_date` = ?, `phone` = ?, `email` = ?, `address` = ?, `staff_position_id` = ?, `deleted` = ? WHERE `id` = ?";
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, staff.getName());
@@ -211,7 +233,8 @@ public class StaffRepository {
             ps.setString(4, staff.getEmail());
             ps.setString(5, staff.getAddress());
             ps.setInt(6, staff.getStaffPosition().getId());
-            ps.setInt(7, staff.getId());
+            ps.setBoolean(7, staff.isDeleted());
+            ps.setInt(8, staff.getId());
             if (ps.executeUpdate() > 0) {
                 flag = true;
             }

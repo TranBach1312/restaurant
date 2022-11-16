@@ -83,7 +83,7 @@ public class OrderController implements Initializable {
     private HBox pageHBox;
     private IntegerProperty curPage = new SimpleIntegerProperty();
 
-    private int limit = 10;
+    private int limit = 1000;
 
     ObjectProperty<DishCategory> dishCategoryObjectProperty = new SimpleObjectProperty<>();
 
@@ -130,7 +130,7 @@ public class OrderController implements Initializable {
         dishCategoryGridPane.setPadding(new Insets(50, 0, 0, 0));
         dishCategoryGridPane.setAlignment(Pos.CENTER);
         dishCategoryPane.setContent(dishCategoryGridPane);
-        dishCategoryObjectProperty.set(dishCategories.get(1));
+        dishCategoryObjectProperty.set(dishCategories.get(0));
         dishCategoryObjectProperty.addListener((observableValue, dishCategory, t1) -> {
             curPage.set(1);
             updateDishTableView();
@@ -178,42 +178,6 @@ public class OrderController implements Initializable {
         //
 
 
-        int dishCount = OrderRepository.getDishCount();
-        int numberOfPage = (int) Math.ceil((double) dishCount / limit);
-        for (int i = 1; i <= numberOfPage; i++) {
-            Button button = new Button(i + "");
-            button.setPrefHeight(30);
-            button.setPrefWidth(30);
-            int finalI = i;
-            button.setOnAction(actionEvent -> {
-                curPage.set(finalI);
-            });
-
-            pageHBox.getChildren().add(button);
-        }
-
-        curPage.addListener((observableValue, number, t1) -> {
-            updateDishTableView();
-            if (t1.equals(1)) {
-                prevButton.setDisable(true);
-            } else {
-                prevButton.setDisable(false);
-            }
-            if (t1.equals(numberOfPage)) {
-                nextButton.setDisable(true);
-            } else {
-                nextButton.setDisable(false);
-            }
-        });
-
-
-        prevButton.setOnAction(actionEvent -> {
-            curPage.set(curPage.get() - 1);
-        });
-
-        nextButton.setOnAction(actionEvent -> {
-            curPage.set(curPage.get() + 1);
-        });
 
 
         curPage.set(1);
@@ -225,7 +189,7 @@ public class OrderController implements Initializable {
         if (dinnerTable.getId() != -1) {
             oldOrder = OrderRepository.getOrderFromTable(dinnerTable);
         }
-        ObservableList<Dish> dishes = OrderRepository.getDishList(searchTextField.getText(), curPage.get(), limit);
+        ObservableList<Dish> dishes = OrderRepository.getDishList("", 1, 1000);
         if (oldOrder.isPresent()) {
             ArrayList<OrderItem> oldOrderItem = oldOrder.get().getOrderItems();
             oldOrderItem.forEach(orderItem -> {

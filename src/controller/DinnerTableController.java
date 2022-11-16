@@ -51,7 +51,7 @@ public class DinnerTableController implements Initializable {
             button.getStyleClass().add("dinner-table");
             if(dinnerTable.isInUse()){
                 label.setText("In use");
-                label.setTextFill(Paint.valueOf("Gray"));
+                label.setTextFill(Paint.valueOf("white"));
                 button.getStyleClass().add("in-use");
             }
 

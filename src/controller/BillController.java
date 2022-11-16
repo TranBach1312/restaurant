@@ -122,7 +122,7 @@ public class BillController implements Initializable {
                     DecimalFormat df = new DecimalFormat("#.##");
 
                     discount.setText(df.format(thisBill.getTotalDiscount() * 100) + "%");
-                    thisBill.setTotalMoney(thisOrder.getTotalMoney() * ((100 - discountOnCustomer * 100) / 100));
+                    thisBill.setTotalMoney(Double.valueOf(Double.valueOf(df.format(thisOrder.getTotalMoney())) * ((100 - discountOnCustomer * 100) / 100)));
                     grandTotal.setText(String.valueOf(df.format(thisBill.getTotalMoney())));
                 } else {
                     phoneNumberTmp.set(newValue);
@@ -177,6 +177,7 @@ public class BillController implements Initializable {
                 OrderRepository.updateTotalSold(e.getDish());
             });
             OrderRepository.updateOrder(thisBill.getOrder());
+            thisBill.getOrder().getTable().setInUse(false);
             OrderRepository.updateTable(thisBill.getOrder().getTable());
             OrderRepository.insertNewBill(thisBill);
             Stage curStage = (Stage) (billBorderPane.getScene().getWindow());

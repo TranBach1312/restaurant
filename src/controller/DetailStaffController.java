@@ -91,7 +91,12 @@ public class DetailStaffController implements Initializable {
             phoneTextField.setText(staff.getPhone());
             birthDatePicker.setValue(staff.getBirthDate().toLocalDate());
             startWorkLabel.setText(staff.getStartWorkedAt().toString());
-            disableCheckbox.setSelected(staff.isDeleted());
+            if(staff.getId() == 1){
+                disableHBox.setVisible(false);
+            }
+            else {
+                disableCheckbox.setSelected(staff.isDeleted());
+            }
         } else {
             disableHBox.setVisible(false);
             startWorkHBox.setVisible(false);
