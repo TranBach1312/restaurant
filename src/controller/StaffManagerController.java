@@ -1,9 +1,11 @@
 package controller;
 
+import entity.Dish;
 import entity.Staff;
 import entity.StaffPosition;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -109,6 +112,22 @@ public class StaffManagerController implements Initializable {
             toStaff(null, false);
         });
 
+        searchTextField.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+                curPage.set(1);
+                ObservableList<Dish> dishes = OrderRepository.getDishList(searchTextField.getText().trim(), curPage.get(), limit);
+                staffTableView.setItems(StaffRepository.getStaffList(searchTextField.getText(), 1, limit));
+
+                staffTableView.refresh();
+
+                // close text box
+                staffTableView.edit(-1, null);
+            }
+        });
+        searchButton.setOnMouseClicked(mouseEvent -> {
+            ObservableList<Dish> dishes = OrderRepository.getDishList(searchTextField.getText().trim(), curPage.get(), limit);
+            staffTableView.setItems(StaffRepository.getStaffList(searchTextField.getText(), 1, limit));
+        });
 
         int staffCount = StaffRepository.getCountStaff();
         int numberOfPage = (int) Math.ceil((double) staffCount / limit);

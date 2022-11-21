@@ -1,5 +1,6 @@
 package controller;
 
+import account.LoggedAccount;
 import entity.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -179,6 +180,7 @@ public class BillController implements Initializable {
             OrderRepository.updateOrder(thisBill.getOrder());
             thisBill.getOrder().getTable().setInUse(false);
             OrderRepository.updateTable(thisBill.getOrder().getTable());
+            thisBill.setBillCreator(LoggedAccount.getUserLogged().get());
             OrderRepository.insertNewBill(thisBill);
             Stage curStage = (Stage) (billBorderPane.getScene().getWindow());
             curStage.close();

@@ -728,8 +728,8 @@ public class OrderRepository {
         Connection conn = JDBCConnect.JDBCConnector();
         PreparedStatement ps = null;
         ResultSet rs = null;
-        String sql = "INSERT INTO `bill`(`bill_number`, `total_discount`, `total_money`, `created_at`, `order_id`, `customer_id`)" +
-                "VALUE(?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `bill`(`bill_number`, `total_discount`, `total_money`, `created_at`, `order_id`, `customer_id`, `user_id`)" +
+                "VALUE(?, ?, ?, ?, ?, ?, ?)";
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, bill.getBillNumber());
@@ -737,6 +737,7 @@ public class OrderRepository {
             ps.setDouble(3, bill.getTotalMoney());
             ps.setTimestamp(4, bill.getCreatedAt());
             ps.setInt(5, bill.getOrder().getId());
+            ps.setInt(6, bill.getBillCreator().getId());
             int cusId = -1;
             if (bill.getCustomer() != null) {
                 cusId = bill.getCustomer().getId();

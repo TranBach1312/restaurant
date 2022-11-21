@@ -16,6 +16,8 @@ public class Bill {
     private String note;
     private Timestamp createdAt;
 
+    private User billCreator;
+
     public Bill() {
     }
 
@@ -74,6 +76,18 @@ public class Bill {
 
     public DinnerTable getDinnerTable() {
         return dinnerTable;
+    }
+
+    public void setDinnerTable(DinnerTable dinnerTable) {
+        this.dinnerTable = dinnerTable;
+    }
+
+    public User getBillCreator() {
+        return billCreator;
+    }
+
+    public void setBillCreator(User billCreator) {
+        this.billCreator = billCreator;
     }
 
     public Customer getCustomer() {
